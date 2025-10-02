@@ -1,0 +1,31 @@
+CREATE TABLE daily_reports (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    report_date DATE NOT NULL,
+    preacher_name VARCHAR(255) NOT NULL,
+    coordinator_name VARCHAR(255) NOT NULL,
+    session VARCHAR(100) NOT NULL,
+    sermon_start TIME,
+    sermon_end TIME,
+    prayer_start TIME,
+    prayer_end TIME,
+    
+    -- Department evaluations
+    worship_team_score INT,
+    instrumentalists_score INT,
+    technical_sound_score INT,
+    prayer_leaders_score INT,
+    security_score INT,
+    interpretation_score INT,
+    media_score INT,
+    ushering_score INT,
+    bible_reading_score INT,
+    
+    -- Pastors attendance (stored as JSON array)
+    pastors_attendance JSON,
+    
+    created_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
+);
